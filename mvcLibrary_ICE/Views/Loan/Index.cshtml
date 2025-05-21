@@ -1,0 +1,58 @@
+﻿@model IEnumerable<mvcLibrary_ICE.Models.Loan>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form method="get" asp-action="Index" class="search-form">
+    <div class="form-group">
+        <label for="searchString" class="form-label">Search Book</label>
+        <input type="text" id="searchString" name="searchString" class="form-control" placeholder="Search by Title" value="@ViewData["Index"]" /> @* Search input field *@
+    </div>
+    <br />
+    <button type="submit" class="btn btn-search">Search</button> |
+    <a asp-action="Index" class="btn btn-search-2">Clear</a>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LoanID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoanDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Book)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoanID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoanDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Book.Title)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.LoanID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.LoanID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.LoanID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
