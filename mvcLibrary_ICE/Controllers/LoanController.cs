@@ -18,7 +18,7 @@ namespace mvcLibrary_ICE.Controllers
             _context = context;
         }
 
-        // GET: Loan
+        
         public async Task<IActionResult> Index(string searchString)
         {
             if (_context.Loan == null)
